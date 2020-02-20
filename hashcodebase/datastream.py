@@ -1,9 +1,42 @@
 class StreamHandler():
     def open(self, file_path):
-        pass
+        with open(file_path, "r") as f:
+            first_line = f.readline().strip()
+            number_of_books, number_of_libraries, number_of_days = map(int, first_line.split(" "))
+            library_scores = dict()
+            second_line = f.readline().strip()
 
-    def write(self, file_path, write_object):
-        pass
+            book_scores = list(map(int ,second_line.split(" ")))
+            libraries = []
+
+            first_line = f.readline().strip()
+            second_line = f.readline().strip()
+
+
+            while(len(first_line.split(" ")) > 0):
+
+                books, signup, ship_time  = map(int, first_line.split(" "))
+                lib = Library(books, signup, ship_time)
+
+                lib.book_objects = list(map(int,second_line.split(" ")))
+                libraries.append(lib)
+                first_line = f.readline().strip()
+                fl = first_line
+                if(fl.replace(' ', '') == ""):
+                    break
+
+                second_line = f.readline().strip()
+                if(second_line == ""):
+                    break
+
+            return Libraries(libraries, number_of_books, number_of_days)
+
+
+    def write(self, file_path, write_objects):
+        with open(file_path, "w") as f:
+            for write_object in write_objects:
+                f.write(str(write_object[0]) + "\n")
+                f.write(" ".join(map(str, write_object[1])))
 
 class StreamHandler2019():
     def open(self, file_path):
