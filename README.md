@@ -1,5 +1,5 @@
 # hashcodebase
-Base Code for the Hash Code Project
+Base Code for the Google Hash Code Project
 
 # How To Use?
 
